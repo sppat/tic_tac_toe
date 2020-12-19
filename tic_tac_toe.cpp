@@ -96,12 +96,16 @@ int main(){
 }
 
 human::human(){
-	cout<<"Player 1 what's your name?: ";
-	cin.getline(name, 20);
+	do{
+    	cout<<"Player 1 what's your name?: ";
+    	cin.getline(name, 20);
+		if (strlen(name) == 0)
+			cout<<"Name is required!"<<endl;
+	}while(strlen(name) == 0);
 	do{
 		cout<<"Which shape do you want?(x or o): ";
 		shape=getchar();
-		while(getchar()!='\n'){};
+	    	while(shape!='\n' && getchar()!='\n'){};
 	}while(shape!='X' && shape!='x' && shape!='O' && shape!='o');
 	cout<<endl;
 	if (shape=='X' || shape=='x')
@@ -112,8 +116,12 @@ human::human(){
 
 human::human(human &ob, bool in_shape){
 	do{
-		cout<<"Player 2 what's your name?: ";
-		cin.getline(name, 20);
+		do{
+			cout<<"Player 2 what's your name?: ";
+			cin.getline(name, 20);
+			if (strlen(name) == 0)
+				cout<<"Name is required!"<<endl;
+		}while(strlen(name) == 0);
 		if (!(strcmp(name, ob.get_name())))
 			cout<<"Name already exists!"<<endl;
 	}while(!(strcmp(name, ob.get_name())));
